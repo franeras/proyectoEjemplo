@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado ROT13</title>
+
+</head>
+<body>
+    <h1>Sustituir</h1>
+
+    <textarea name="text" id="text"></textarea><br><br><br>
+    Palabra a buscar: 
+    <input type="text" name="palabaBuscar" id="palabaBuscar" required>
+    Palabra sustituta:
+    <input type="text" name="PalabraSustituta" id="PalabraSustituta">
+    <input type="button" onclick="sustituirPalabra()" value="Botón">
+    <br> 
+
+    <script>
+        function sustituirPalabra(){
+            texto = document.getElementById("text").value.split(" ");
+            palabraABuscar  = document.getElementById("palabaBuscar").value;
+            palabraASustituir = document.getElementById("PalabraSustituta").value;
+
+            for (let i = 0; i < texto.length; i++) {
+                if(palabraAbuscar.includes(texto[i])){
+                    texto[i] = palabraASustituir;
+                }
+            }
+
+            var textoModificado=texto.join(" ");
+
+            document.getElementById("text").value = textoModificado;
+        }
+
+    </script>
+</body>
+</html>

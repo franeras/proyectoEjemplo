@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        <textarea name="" id="texto" placeholder="Escriba aquí" required></textarea><br>
+        <button type="button" onclick="mostrar()"> registrar</button>
+
+
+        <p id="resultado"></p>
+        
+
+    </form>
+
+    <script>
+        function esPreposicion(palabra){
+            var preposiciones = ['a', 'ante', 'bajo', 'cabe', 'con', 'contra', 'de', 'desde', 'en', 'entre', 'hacia', 'hasta', 'para', 'por', 'según', 'sin', 'so', 'sobre', 'tras'];
+
+            //la palabra pasada como parametro la pasamos a lower
+            var palabraMinus = palabra.toLowerCase();
+
+            //Devuelve true si la palabra como parametro es una preposicion.
+            return preposiciones.includes(palabraMinus);
+        }
+
+        function contarPreposicion(){
+            var palabras = document.getElementById('texto').value.split(" ");
+            var contadorprep = 0;
+
+            for (let i = 0; i < palabras.length; i++) {
+                if(esPreposicion(palabras[i])){
+                    contadorprep++;
+                }
+            }
+            return contadorprep;
+        }
+
+
+
+        function contarPalabras(){
+            var palabras = document.getElementById('texto').value.split(" ");
+            return palabras.length;
+            
+        }
+
+        function mostrar(){
+            var totalPalabras = contarPalabras();
+            var totalPreposiciones = contarPreposicion();
+            var Palindromo = esPalindromo();
+
+            document.getElementById('resultado').innerHTML = 
+                'Número de palabras: ' + totalPalabras + '<br>' +
+                'Número de preposiciones: ' + totalPreposiciones+"<br>"+
+                'Número total de palindromos:'+Palindromo.contadorPalindromo+"<br>"+
+                'Palindromos: '+Palindromo.palindromos;
+
+        }
+
+        function esPalindromo(){
+            var contadorPalindromo = 0;
+            var palabras = document.getElementById('texto').value.split(" ");
+            var palabraReves;
+            var palindromos = [];
+            
+                for (let i = 0; i < palabras.length; i++) {
+                    palabraReves = palabras[i].split("").reverse().join("");
+
+                   if(palabras[i]==palabraReves){
+                        contadorPalindromo++;
+                        palindromos.push(palabraReves);
+                   }
+                }
+
+                return {
+                    contadorPalindromo: contadorPalindromo,
+                    palindromos: palindromos
+                };
+        }
+
+    </script>
+    
+</body>
+</html>
